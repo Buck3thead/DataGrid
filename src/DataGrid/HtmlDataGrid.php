@@ -32,7 +32,7 @@ class HtmlDataGrid implements DataGrid
         } catch (\Exception $e) {
             $this->template
                 ->bindValue('criticalError', true);
-                //bindValue('criticalErrorMessage', $e->getMessage());
+            //bindValue('criticalErrorMessage', $e->getMessage());
         } finally {
             return $this->template->output();
         }
@@ -87,6 +87,7 @@ class HtmlDataGrid implements DataGrid
                     $cells[$iRow][$key]['error'] = false;
                 } catch (\Throwable $e) {
                     $cells[$iRow][$key]['error'] = true;
+                    $cells[$iRow][$key]['errorMessage'] = $e->getMessage();
                     $errorCountInCurrentRow++;
                 }
             }
@@ -170,8 +171,19 @@ class HtmlDataGrid implements DataGrid
     {
         $sortTextOrInt = $isNumeric ? SORT_NUMERIC : SORT_STRING;
         $sortAscOrDesc = $ascending ? SORT_ASC : SORT_DESC;
-        array_multisort(array_column($rows, $byColumn),$sortAscOrDesc, $sortTextOrInt, $rows);
-        return $rows;
+
+        // Add temporary value to rows containing error to make able multisort
+        $errorArray = [];
+        $cleanedArray = [];
+        foreach ($rows as $key=>$row) {
+            if (!array_key_exists($byColumn, $row)) {
+                $errorArray[] = $row;
+            } else {
+                $cleanedArray[] = $row;
+            }
+        }
+        array_multisort(array_column($cleanedArray, $byColumn),$sortAscOrDesc, $sortTextOrInt, $cleanedArray);
+        return array_merge($cleanedArray, $errorArray);
     }
 
     protected function splitData(array $rows, int $rowsPerPage): array
