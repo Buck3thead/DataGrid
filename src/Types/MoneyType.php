@@ -28,7 +28,7 @@ class MoneyType implements DataType
         string $thousandsSeparator = ' ',
         string $decimalSeparator = ',',
         bool $showDecimals = true,
-        int $forceCustomPrecision = null,
+        int $forceCustomPrecision = null
     ) {
         $this->currency = $currency;
         $this->thousandsSeparator = $thousandsSeparator;
