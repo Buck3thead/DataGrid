@@ -39,6 +39,9 @@ class MoneyType implements DataType
 
     public function format(string $value): string
     {
+        if (!(is_numeric($value))) {
+            throw new \Exception("Not numeric value given.");
+        }
         $formatted = $this->formatNumberAsString($value);
         return $formatted . ' ' . $this->currency;
     }

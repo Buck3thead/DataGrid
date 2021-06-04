@@ -40,6 +40,9 @@ class NumberType implements DataType
 
     public function format(string $value): string
     {
+        if (!(is_numeric($value))) {
+            throw new \Exception("Not numeric value given.");
+        }
         $rounded = $this->round($value);
         $formatted = number_format(
             $rounded,
