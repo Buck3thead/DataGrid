@@ -11,7 +11,7 @@
 <?php else: ?>
 
 <!-- ENTIRE DATAGRID CONTAINER -->
-<div style="width=100%; margin: 0 auto">
+<div style="width: 100%; margin: 0 auto">
     <table class="table table-bordered">
         <!-- HEADERS -->
         <thead>
