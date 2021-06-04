@@ -46,7 +46,7 @@ class LinkType implements DataType
     public function __construct(
         Template $template,
         bool $asButton = false,
-        string $bootstrapColor = '',
+        string $bootstrapColor = ''
     ) {
         $this->template = $template;
         $this->asButton = $asButton;
