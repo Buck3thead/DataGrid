@@ -1,0 +1,7 @@
+{
+    "image": "/templates/TypeTemplates/ImageTypeDefaultTemplate.php",
+    "link": {
+        "regular": "./templates/TypeTemplates/LinkTypeRegularDefaultTemplate.php",
+        "button": "./templates/TypeTemplates/LinkTypeButtonDefaultTemplate.php"
+    }
+}
