@@ -1,10 +1,10 @@
 {
-    "main": "/templates/main/BootstrapDefaultTemplate.php",
+    "main": "/vendor/bieronski/data-grid/templates/main/BootstrapDefaultTemplate.php",
     "types": {
-        "image": "/../../templates/types/ImageTypeDefaultTemplate.php",
+        "image": "/vendor/bieronski/data-grid/templates/types/ImageTypeDefaultTemplate.php",
         "link": {
             "regular": "/../../templates/types/LinkTypeRegularDefaultTemplate.php",
-            "button": "/../../templates/types/LinkTypeButtonDefaultTemplate.php"
+            "button": "/../../vendor/bieronski/data-grid/templates/types/LinkTypeButtonDefaultTemplate.php"
         }
     }
 }

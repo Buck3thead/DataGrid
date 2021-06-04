@@ -72,7 +72,7 @@ class DefaultConfig implements Config
     public function addLinkColumn(string $key, bool $asButton = false): self
     {
         $templateFileKey = $asButton ? 'button' : 'regular';
-        $template = new DefaultTemplate($this->templatesPaths['link'][$templateFileKey]);
+        $template = new DefaultTemplate(__DIR__ . $this->templatesPaths['types']['link'][$templateFileKey]);
         $column = (new DefaultColumn())
             ->withDataType(new LinkType($template, $asButton, LinkType::COLOR_PRIMARY))
             ->withAlign(DefaultColumn::ALIGN_LEFT)
@@ -83,7 +83,7 @@ class DefaultConfig implements Config
 
     public function addPictureColumn(string $key): self
     {
-        $template = new DefaultTemplate($this->templatesPaths['image']);
+        $template = new DefaultTemplate(__DIR__ . $this->templatesPaths['types']['image']);
         $column = (new DefaultColumn())
             ->withDataType(new ImageType($template, 16, 16))
             ->withAlign(DefaultColumn::ALIGN_LEFT)
