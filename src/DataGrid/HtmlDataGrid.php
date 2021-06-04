@@ -82,12 +82,19 @@ class HtmlDataGrid implements DataGrid
             foreach ($columns as $key => $iColumn) {
 
                 $cells[$iRow][$key]['align'] = $iColumn->getAlign();
-                try {
-                    $cells[$iRow][$key]['content'] = $iColumn->getDataType()->format($rowsToRenderOnCurrentPage[$iRow][$key]);
-                    $cells[$iRow][$key]['error'] = false;
-                } catch (\Throwable $e) {
+
+                if (isset($rowsToRenderOnCurrentPage[$iRow][$key])) {
+                    try {
+                        $cells[$iRow][$key]['content'] = $iColumn->getDataType()->format($rowsToRenderOnCurrentPage[$iRow][$key]);
+                        $cells[$iRow][$key]['error'] = false;
+                    } catch (\Throwable $e) {
+                        $cells[$iRow][$key]['content'] = '';
+                        $cells[$iRow][$key]['error'] = true;
+                        $errorCountInCurrentRow++;
+                    }
+                } else {
+                    $cells[$iRow][$key]['content'] = '';
                     $cells[$iRow][$key]['error'] = true;
-                    $cells[$iRow][$key]['errorMessage'] = $e->getMessage();
                     $errorCountInCurrentRow++;
                 }
             }
