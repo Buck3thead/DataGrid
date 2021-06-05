@@ -33,6 +33,10 @@ class DefaultTemplate implements Template
 
     public function output(): string
     {
+        // To make shorter reffering to values in template file
+        $data = $this->data;
+
+        // Render data
         ob_start();
         include $this->templateFile;
         $rendered = ob_get_clean();

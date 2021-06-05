@@ -1,2 +1,2 @@
 <?php ?>
-<a href="<?php echo $this->data['link']['url']?>"<?php if ($this->data['link']['class'] <> '') echo ' class="' . $this->data['link']['class'] . '">'; echo $this->data['link']['url']; ?></a>
+<a href="<?php echo $data['link']['url']?>"<?php if ($data['link']['class'] <> '') echo ' class="' . $data['link']['class'] . '">'; echo $data['link']['url']; ?></a>

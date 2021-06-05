@@ -1,11 +1,11 @@
 <?php
 
 ?>
-<form action="<?php echo $this->data['link']['url']; ?>">
+<form action="<?php echo $data['link']['url']; ?>">
     <button type="submit"<?php
-    if ($this->data['link']['class'] <> '') {
-        echo ' class="' . $this->data['link']['class'] . '">';
+    if ($data['link']['class'] <> '') {
+        echo ' class="' . $data['link']['class'] . '">';
     }
-    echo $this->data['link']['url'];
+    echo $data['link']['url'];
     ?></button>
 </form>
