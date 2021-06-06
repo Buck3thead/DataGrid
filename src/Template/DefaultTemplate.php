@@ -33,7 +33,7 @@ class DefaultTemplate implements Template
 
     public function output(): string
     {
-        // To make shorter reffering to values in template file
+        // To make shorter referring to values in template file
         $data = $this->data;
 
         // Render data

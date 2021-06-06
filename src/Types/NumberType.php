@@ -21,7 +21,6 @@ class NumberType implements DataType
     protected int $precision;
     protected int $roundMethod;
     protected bool $forceTrailingZeros;
-    protected bool $nonBreakingSpaces;
 
 
     public function __construct(
@@ -50,7 +49,10 @@ class NumberType implements DataType
             $this->decimalSeparator,
             $this->thousandsSeparator,
         );
-        return $this->fixTrailingZerosIfRequired($formatted);
+        if (!($this->forceTrailingZeros)) {
+            return $this->fixTrailingZeros($formatted);
+        }
+        return $formatted;
     }
 
     protected function roundRegular(string $value): string
@@ -79,12 +81,10 @@ class NumberType implements DataType
         return floor($value * $tempNumber) / $tempNumber;
     }
 
-    protected function fixTrailingZerosIfRequired(string $value): string
+    protected function fixTrailingZeros(string $value): string
     {
-        // adding zero to a string make implicit conversions
-        // resulting in remove trailing zeros
-        if ($this->forceTrailingZeros) {
-            return $value + 0;
+        if (false !== strpos($value, '.')) {
+            $value = rtrim(rtrim($value, '0'), '.');
         }
         return $value;
     }
